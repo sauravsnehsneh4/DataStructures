@@ -56,7 +56,7 @@ public class BinaryTreeNode {
 		}
 	}
 	
-	public ArrayList<Integer> preOrderTraversal(BinaryTreeNode root){
+	public ArrayList<Integer> preOrderIterative(BinaryTreeNode root){
 		ArrayList<Integer> res= new ArrayList<Integer>();
 		if(root==null) {
 			return res;
@@ -75,7 +75,7 @@ public class BinaryTreeNode {
 		
 	}
 	
-	public ArrayList<Integer> inOrderTraversal(BinaryTreeNode root){
+	public ArrayList<Integer> inOrderIterative(BinaryTreeNode root){
 		ArrayList<Integer> res= new ArrayList<Integer>();
 		Stack<BinaryTreeNode> s=new Stack<BinaryTreeNode>();
 		BinaryTreeNode currentNode=root;
