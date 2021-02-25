@@ -3,10 +3,10 @@ package BinaryTree;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class BinaryTreeNode {
+public class BinaryTree {
 	private int data;
-	private BinaryTreeNode left, right;
-	public BinaryTreeNode(int data) {
+	private BinaryTree left, right;
+	public BinaryTree(int data) {
 		super();
 		this.data = data;
 		this.left= null;
@@ -19,20 +19,20 @@ public class BinaryTreeNode {
 	public void setData(int data) {
 		this.data = data;
 	}
-	public BinaryTreeNode getLeft() {
+	public BinaryTree getLeft() {
 		return left;
 	}
-	public void setLeft(BinaryTreeNode left) {
+	public void setLeft(BinaryTree left) {
 		this.left = left;
 	}
-	public BinaryTreeNode getRight() {
+	public BinaryTree getRight() {
 		return right;
 	}
-	public void setRight(BinaryTreeNode right) {
+	public void setRight(BinaryTree right) {
 		this.right = right;
 	}
 	
-	public void PreOrderRec(BinaryTreeNode root) {
+	public void PreOrderRec(BinaryTree root) {
 		if(root!=null) {
 			System.out.println(root.data);
 			PreOrderRec(root.left);
@@ -40,7 +40,7 @@ public class BinaryTreeNode {
 		}
 	}
 	
-	public void InOrderRec(BinaryTreeNode root) {
+	public void InOrderRec(BinaryTree root) {
 		if(root!=null) {
 			InOrderRec(root.left);
 			System.out.println(root.data);
@@ -48,7 +48,7 @@ public class BinaryTreeNode {
 		}
 	}
 	
-	public void PostOrderRec(BinaryTreeNode root) {
+	public void PostOrderRec(BinaryTree root) {
 		if(root!=null) {
 			PostOrderRec(root.left);
 			PostOrderRec(root.right);
@@ -56,15 +56,15 @@ public class BinaryTreeNode {
 		}
 	}
 	
-	public ArrayList<Integer> preOrderIterative(BinaryTreeNode root){
+	public ArrayList<Integer> preOrderIterative(BinaryTree root){
 		ArrayList<Integer> res= new ArrayList<Integer>();
 		if(root==null) {
 			return res;
 		}
-		Stack<BinaryTreeNode> s=new Stack<BinaryTreeNode>();
+		Stack<BinaryTree> s=new Stack<BinaryTree>();
 		s.add(root);
 		while(!s.isEmpty()) {
-			BinaryTreeNode tmp=s.pop();
+			BinaryTree tmp=s.pop();
 			res.add(tmp.data);
 			if(tmp.right!=null)
 				s.push(tmp.right);
@@ -75,10 +75,10 @@ public class BinaryTreeNode {
 		
 	}
 	
-	public ArrayList<Integer> inOrderIterative(BinaryTreeNode root){
+	public ArrayList<Integer> inOrderIterative(BinaryTree root){
 		ArrayList<Integer> res= new ArrayList<Integer>();
-		Stack<BinaryTreeNode> s=new Stack<BinaryTreeNode>();
-		BinaryTreeNode currentNode=root;
+		Stack<BinaryTree> s=new Stack<BinaryTree>();
+		BinaryTree currentNode=root;
 		boolean done=false;
 		while(!done) {
 			if (currentNode!=null) {
