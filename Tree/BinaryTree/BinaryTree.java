@@ -1,11 +1,13 @@
 package BinaryTree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTree {
-	private int data;
-	private BinaryTree left, right;
+	public int data;
+	public BinaryTree left, right;
 	public BinaryTree(int data) {
 		super();
 		this.data = data;
@@ -99,6 +101,76 @@ public class BinaryTree {
 		
 	}
 	
+	public ArrayList<Integer> postOrderIterative(BinaryTree root){
+		ArrayList<Integer> res=new ArrayList<>();
+		if (root==null)
+			return res;
+		Stack<BinaryTree> s=new Stack<BinaryTree>();
+		s.push(root);
+		BinaryTree prev=null;
+		while(!s.isEmpty()) {
+			BinaryTree curr=s.peek();
+			if(prev==null || prev.left==curr || prev.right==curr) {
+				if(curr.left!=null)
+					s.push(curr.left);
+				else if(curr.right!=null)
+					s.push(curr.right);
+			}	
+			else if(curr.left==prev) {
+				if(curr.right!=null)
+					s.push(curr.right);	
+			}
+			else {
+				res.add(curr.data);
+				s.pop();
+			}
+			prev=curr;
+			}
+		return res;
+		}
 	
+	public ArrayList<Integer> levelOrderIterative(BinaryTree root){
+		ArrayList<Integer> res=new ArrayList<Integer>();
+		if(root==null) {
+			return res;
+		}
+		Queue<BinaryTree> q=new LinkedList<BinaryTree>();
+		q.offer(root);
+		q.offer(null);
+		ArrayList<Integer> curr=new ArrayList<Integer>();
+		while(!q.isEmpty()) {
+			BinaryTree temp=q.poll();
+			if(temp!=null) {
+				curr.add(temp.data);
+				if(temp.left!=null)
+					q.offer(temp.left);
+				if(temp.right!=null)
+					q.offer(temp.right);
+			}else {
+				ArrayList<Integer> c_curr=new ArrayList<Integer>(curr);
+				res.addAll(curr);
+				curr.clear();
+				if(!q.isEmpty())
+					q.offer(null);
+			}
+			
+		}
+		
+		return res;
+	}
+	
+	public static void main(String[] args) {
+		BinaryTree b=new BinaryTree(1);
+		b.setLeft(new BinaryTree(2));
+		b.setRight(new BinaryTree(3));
+		b.getLeft().setLeft(new BinaryTree(4));
+		b.getLeft().setRight(new BinaryTree(5));
+		b.getRight().setLeft(new BinaryTree(6));
+		b.getRight().setRight(new BinaryTree(7));
+		b.PreOrderRec(b);
+		System.out.println("-----------------");
+		System.out.println(b.levelOrderIterative(b).toString());
 
+	}
 }
+

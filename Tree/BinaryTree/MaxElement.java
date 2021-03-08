@@ -5,19 +5,20 @@ import java.util.Stack;
 public class MaxElement {
 
 	public int maxInBinaryTreeRec(BinaryTree root) {
-		int max=0;
+		int maxElement=Integer.MIN_VALUE;
 		if(root!=null) {
-			int left=maxInBinaryTreeRec(root.getLeft());
-			int right=maxInBinaryTreeRec(root.getRight());
-			if(left>right)
-				max=left;
-			else{
-				max=right;	
-			}
-			if(root.getData()>max)
-				max=root.getData();
+		int leftMax=maxInBinaryTreeRec(root.left);
+		int rightMax=maxInBinaryTreeRec(root.right);
+		if(leftMax>maxElement)
+			maxElement=leftMax;
+		else
+			maxElement=rightMax;
+		
+		
+		if(root.data>maxElement)
+			maxElement=root.data;
 		}
-			return max;
+		return maxElement;
 	}
 	
 	public int maxInBinaryTreeItr(BinaryTree root) {
